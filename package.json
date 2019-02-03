@@ -1,0 +1,49 @@
+{
+  "name": "emel",
+  "version": "0.0.0",
+  "description": "Create DOM elements with Emmet",
+  "main": "src/emel.js",
+  "scripts": {
+    "test": "jest --verbose",
+    "test:cover": "jest --coverage",
+    "lint": "eslint .",
+    "semantic-release": "semantic-release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UziTech/emel.git"
+  },
+  "keywords": [
+    "emmet",
+    "createelement",
+    "dom"
+  ],
+  "author": "Tony Brix <Tony@Brix.ninja> (https://Tony.Brix.ninja)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/UziTech/emel/issues"
+  },
+  "homepage": "https://github.com/UziTech/emel#readme",
+  "dependencies": {
+    "@emmetio/abbreviation": "^0.7.0"
+  },
+  "devDependencies": {
+    "@semantic-release/commit-analyzer": "^6.1.0",
+    "@semantic-release/git": "^7.0.8",
+    "@semantic-release/github": "^5.2.10",
+    "@semantic-release/npm": "^5.1.4",
+    "@semantic-release/release-notes-generator": "^7.1.4",
+    "eslint": "^5.13.0",
+    "jest-cli": "^24.0.0",
+    "semantic-release": "^15.13.3"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      "@semantic-release/git"
+    ]
+  }
+}
