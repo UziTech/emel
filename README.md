@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/UziTech/emel.svg?branch=master)](https://travis-ci.com/UziTech/emel)
+
 # emel
 
 Create DOM elements with Emmet
