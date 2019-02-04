@@ -1,4 +1,6 @@
 let emmet = require("@emmetio/abbreviation");
+
+/* istanbul ignore next */
 if (typeof emmet.default === "function") {
 	// fixes webpack including the es module version
 	emmet = emmet.default;
