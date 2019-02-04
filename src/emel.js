@@ -1,4 +1,8 @@
-const emmet = require("@emmetio/abbreviation");
+let emmet = require("@emmetio/abbreviation");
+if (typeof emmet.default === "function") {
+	// fixes webpack including the es module version
+	emmet = emmet.default;
+}
 
 function createElementFromNode(node) {
 	if (node.isTextOnly) {
