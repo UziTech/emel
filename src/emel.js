@@ -40,12 +40,8 @@ module.exports = function (str = "") {
 	const tree = emmet(str);
 	const children = tree.children.map(createElementFromNode);
 
-	if (children.length === 1) {
-		return children[0];
-	}
-
 	return children.reduce((el, child) => {
 		el.appendChild(child);
 		return el;
-	}, document.createElement("div"));
+	}, document.createDocumentFragment());
 };
