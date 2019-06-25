@@ -34,7 +34,7 @@
     "@semantic-release/github": "^5.4.0",
     "@semantic-release/npm": "^5.1.9",
     "@semantic-release/release-notes-generator": "^7.2.0",
-    "eslint": "^6.0.0",
+    "eslint": "^6.0.1",
     "jest-cli": "^24.8.0",
     "semantic-release": "^15.13.16"
   },
