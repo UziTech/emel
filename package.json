@@ -31,12 +31,12 @@
     "@semantic-release/changelog": "^3.0.4",
     "@semantic-release/commit-analyzer": "^6.3.0",
     "@semantic-release/git": "^7.0.16",
-    "@semantic-release/github": "^5.4.2",
-    "@semantic-release/npm": "^5.1.13",
+    "@semantic-release/github": "^5.4.3",
+    "@semantic-release/npm": "^5.1.15",
     "@semantic-release/release-notes-generator": "^7.3.0",
     "eslint": "^6.2.1",
     "jest-cli": "^24.9.0",
-    "semantic-release": "^15.13.21"
+    "semantic-release": "^15.13.24"
   },
   "release": {
     "plugins": [
