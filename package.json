@@ -6,8 +6,7 @@
   "scripts": {
     "test": "jest --verbose",
     "test:cover": "jest --coverage",
-    "lint": "eslint .",
-    "semantic-release": "semantic-release"
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
