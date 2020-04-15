@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/UziTech/emel#readme",
   "dependencies": {
-    "@emmetio/abbreviation": "^0.7.0"
+    "@emmetio/abbreviation": "^2.0.0"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^5.0.1",

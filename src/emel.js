@@ -7,7 +7,7 @@ if (typeof emmet.default === "function") {
 }
 
 function createElementFromNode(node) {
-	if (node.isTextOnly) {
+	if (node.value && !node.name && !node.attributes && node.children.length === 0) {
 		return document.createTextNode(node.value);
 	}
 
@@ -17,13 +17,15 @@ function createElementFromNode(node) {
 		el.textContent = node.value;
 	}
 
-	node.attributes.forEach(attr => {
-		if (attr.options.boolean) {
-			el.setAttribute(attr.name, "");
-		} else {
-			el.setAttribute(attr.name, attr.value);
-		}
-	});
+	if (node.attributes) {
+		node.attributes.forEach(attr => {
+			if (attr.boolean) {
+				el.setAttribute(attr.name, "");
+			} else {
+				el.setAttribute(attr.name, attr.value);
+			}
+		});
+	}
 
 	node.children
 		.map(createElementFromNode)
