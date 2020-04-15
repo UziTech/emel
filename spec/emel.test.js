@@ -16,6 +16,7 @@ describe("emel", () => {
 	test("should create a plain text node", () => {
 		const el = emel("{test}");
 		expect(el.firstChild.nodeType).toBe(Node.TEXT_NODE);
+		expect(el.firstChild.textContent).toBe("test");
 	});
 
 	describe("tag", () => {
