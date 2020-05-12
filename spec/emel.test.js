@@ -99,6 +99,11 @@ describe("emel", () => {
 				expect(el.childNodes[0].getAttribute("test")).toBe("t");
 			});
 
+			test("should not replace after all values used", () => {
+				const el = emel("[?=?]", { placeholders: ["test"] });
+				expect(el.childNodes[0].getAttribute("test")).toBe("?");
+			});
+
 			test("should replace placeholder in id", () => {
 				const el = emel("#?", { placeholders: ["test"] });
 				expect(el.childNodes[0].id).toBe("test");
