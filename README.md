@@ -43,7 +43,7 @@ const element = emel(emmetString);
 
 ### Placeholders
 
-You can use placeholders to insert dynamic content any string value.
+You can use placeholders to insert dynamic content into any string value.
 
 Replacements can be a string to replace all placeholders with the same value:
 
