@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/UziTech/emel/compare/v2.0.2...v2.1.0) (2020-05-12)
+
+
+### Features
+
+* add placeholders option ([176249b](https://github.com/UziTech/emel/commit/176249b20760b09040c0071fd484c4724c9f6c15))
+
 ## [2.0.2](https://github.com/UziTech/emel/compare/v2.0.1...v2.0.2) (2020-05-09)
 
 
