@@ -51,6 +51,11 @@ describe("emel", () => {
 			expect(el.childNodes[0].getAttribute("test")).toBe("t");
 		});
 
+		test("should set attribute with undefined as boolean", () => {
+			const el = emel("[test]");
+			expect(el.childNodes[0].getAttribute("test")).toBe("");
+		});
+
 		test("should set boolean attribute", () => {
 			const el = emel("[test.]");
 			expect(el.childNodes[0].getAttribute("test")).toBe("");
