@@ -33,7 +33,7 @@ function createElementFromNode(placeholders) {
 
 		if (node.attributes) {
 			node.attributes.forEach(attr => {
-				if (attr.boolean) {
+				if (attr.boolean || typeof attr.value === "undefined") {
 					el.setAttribute(format(attr.name, placeholders), "");
 				} else if (["id", "class"].includes(attr.name)) {
 					el.setAttribute(attr.name, format(attr.value, placeholders));
