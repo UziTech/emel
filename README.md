@@ -49,7 +49,7 @@ Replacements can be a string to replace all placeholders with the same value:
 
 ```js
 emel("?#?.?[?=?]{?}", {
-	placeholders: "test"
+  placeholders: "test"
 });
 // <test id="test" class="test" test="test">test</test>
 ```
@@ -58,7 +58,7 @@ Or an array to replace each placeholder with different value:
 
 ```js
 emel("?#?.?[?=?]{?}", {
-	placeholders: ["tag", "id", "class", "attrName", "attrValue", "text"]
+  placeholders: ["tag", "id", "class", "attrName", "attrValue", "text"]
 });
 // <tag id="id" class="class" attrname="attrValue">text</tag>
 ```
@@ -98,7 +98,7 @@ Placeholders can also be an object with keys that refer to any value:
 
 ```js
 emel("this#is.replaced[with=placeholders]{placeholders}", {
-	placeholders: {
+  placeholders: {
     this: "tag",
     is: "id",
     replaced: "class",
@@ -113,7 +113,7 @@ Placeholder keys must match the entire value to be replaced:
 
 ```js
 emel("#this.is[not='replaced with placholders']", {
-	placeholders: {
+  placeholders: {
     this: "id",
     is: "class",
     replaced: ["attr"],
@@ -122,4 +122,14 @@ emel("#this.is[not='replaced with placholders']", {
   }
 });
 // <div id="id" class="class" not="replaced with placholders"></div>
+```
+
+Text placeholders may also be replaced by a [DOM Node](https://developer.mozilla.org/en-US/docs/Web/API/Node):
+
+```js
+const span = emel("span{text}")
+emel("div{?}", {
+  placeholders: span
+});
+// <div><span>text</span></div>
 ```
