@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/UziTech/emel/compare/v2.2.0...v2.2.1) (2020-05-13)
+
+
+### Bug Fixes
+
+* Add native type placeholders ([b7425a8](https://github.com/UziTech/emel/commit/b7425a8c8c0c93a1bb13cfcecfad23d409849130))
+
 # [2.2.0](https://github.com/UziTech/emel/compare/v2.1.1...v2.2.0) (2020-05-13)
 
 
