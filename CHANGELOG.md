@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/UziTech/emel/compare/v2.1.1...v2.2.0) (2020-05-13)
+
+
+### Features
+
+* Allow placeholder for text to be DOM Node ([6cf2156](https://github.com/UziTech/emel/commit/6cf21563a3512adfc7d4853e3400bae92ad51ad2))
+
 ## [2.1.1](https://github.com/UziTech/emel/compare/v2.1.0...v2.1.1) (2020-05-12)
 
 
