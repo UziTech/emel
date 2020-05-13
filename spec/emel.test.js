@@ -179,6 +179,45 @@ describe("emel", () => {
 				expect(el.childNodes[0].getAttribute("test")).toBe("test");
 				expect(el.childNodes[0].textContent).toBe("test");
 			});
+
+			test("should replace with empty string", () => {
+				const el = emel("div{?}", {
+					placeholders: ""
+				});
+				expect(el.childNodes[0].textContent).toBe("");
+			});
+		});
+
+		describe("number", () => {
+			test("should replace with a number", () => {
+				const el = emel("div{?}", {
+					placeholders: 1
+				});
+				expect(el.childNodes[0].textContent).toBe("1");
+			});
+
+			test("should replace with a zero", () => {
+				const el = emel("div{?}", {
+					placeholders: 0
+				});
+				expect(el.childNodes[0].textContent).toBe("0");
+			});
+		});
+
+		describe("boolean", () => {
+			test("should replace with a number", () => {
+				const el = emel("div{?}", {
+					placeholders: true
+				});
+				expect(el.childNodes[0].textContent).toBe("true");
+			});
+
+			test("should replace with a zero", () => {
+				const el = emel("div{?}", {
+					placeholders: false
+				});
+				expect(el.childNodes[0].textContent).toBe("false");
+			});
 		});
 
 		describe("object", () => {

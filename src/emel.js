@@ -10,7 +10,7 @@ function format(value, placeholders) {
 	if (Array.isArray(value)) {
 		value = value[0];
 	}
-	if (placeholders[value]) {
+	if (value in placeholders) {
 		const placeholder = placeholders[value];
 		if (Array.isArray(placeholder)) {
 			if (placeholder.length > 0) {
@@ -67,9 +67,11 @@ const defaultOptions = {
 function getOptions(opts) {
 	const options = {...defaultOptions, ...opts};
 
-	if (opts.placeholders) {
+	if ("placeholders" in opts) {
 		if (
 			typeof options.placeholders === "string" ||
+			typeof options.placeholders === "number" ||
+			typeof options.placeholders === "boolean" ||
 			Array.isArray(options.placeholders) ||
 			options.placeholders instanceof Node
 		) {
