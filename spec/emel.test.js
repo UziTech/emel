@@ -77,6 +77,22 @@ describe("emel", () => {
 	});
 
 	describe("placeholders", () => {
+		describe("node", () => {
+			test("should replace placeholder with HTMLElement", () => {
+				const span = document.createElement("span");
+				const el = emel("div{?}", { placeholders: span });
+				expect(el.childNodes[0].childNodes.length).toBe(1);
+				expect(el.childNodes[0].childNodes[0].tagName.toLowerCase()).toBe("span");
+			});
+
+			test("should replace placeholder with HTMLElement in array", () => {
+				const span = document.createElement("span");
+				const el = emel("div{?}", { placeholders: [span] });
+				expect(el.childNodes[0].childNodes.length).toBe(1);
+				expect(el.childNodes[0].childNodes[0].tagName.toLowerCase()).toBe("span");
+			});
+		});
+
 		describe("array", () => {
 			test("should replace placeholder in textNode", () => {
 				const el = emel("{?}", { placeholders: ["test"] });

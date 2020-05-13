@@ -44,7 +44,12 @@ function createElementFromNode(placeholders) {
 		}
 
 		if (node.value) {
-			el.textContent = format(node.value, placeholders);
+			const text = format(node.value, placeholders);
+			if (text instanceof Node) {
+				el.appendChild(text);
+			} else {
+				el.textContent = text;
+			}
 		}
 
 		node.children
@@ -63,7 +68,11 @@ function getOptions(opts) {
 	const options = {...defaultOptions, ...opts};
 
 	if (opts.placeholders) {
-		if (typeof options.placeholders === "string" || Array.isArray(options.placeholders)) {
+		if (
+			typeof options.placeholders === "string" ||
+			Array.isArray(options.placeholders) ||
+			options.placeholders instanceof Node
+		) {
 			options.placeholders = {
 				"?": options.placeholders,
 			};
