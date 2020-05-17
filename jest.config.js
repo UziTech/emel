@@ -15,5 +15,5 @@ module.exports = {
 			"statements": 100
 		}
 	},
-	testRegex: /\.test\.jsx?/.source,
+	testRegex: /\.test\.jsx?$/.source,
 };
