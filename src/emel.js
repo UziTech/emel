@@ -97,6 +97,9 @@ function emel(str = "", options = {}) {
 	if (!document || !document.createElement) {
 		throw new Error("Must be in a browser");
 	}
+	if ("?" in options.placeholders) {
+		str = str.replace(/(^|[^\\])\?/g, "$1\\?");
+	}
 	const tree = emmet(str);
 	const children = tree.children.map(createElementFromNode(options.placeholders));
 
