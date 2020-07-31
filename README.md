@@ -3,6 +3,8 @@
 
 # emel
 
+**em(met)el(ement)**
+
 Create DOM elements with Emmet
 
 ## Installation
