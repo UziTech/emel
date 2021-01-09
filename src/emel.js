@@ -6,7 +6,7 @@ if (typeof emmet.default === "function") {
 	emmet = emmet.default;
 }
 
-function format(value, placeholders) {
+function format(value, placeholders, isAttr = false) {
 	if (Array.isArray(value)) {
 		value = value[0];
 	}
@@ -20,7 +20,7 @@ function format(value, placeholders) {
 			value = placeholder;
 		}
 	}
-	return value;
+	return isAttr && (value === null || typeof value === "undefined") ? false : value;
 }
 
 function createElementFromNode(placeholders) {
@@ -34,11 +34,21 @@ function createElementFromNode(placeholders) {
 		if (node.attributes) {
 			node.attributes.forEach(attr => {
 				if (attr.boolean || typeof attr.value === "undefined") {
-					el.setAttribute(format(attr.name, placeholders), "");
+					const name = format(attr.name, placeholders, true);
+					if (name !== false) {
+						el.setAttribute(name, "");
+					}
 				} else if (["id", "class"].includes(attr.name)) {
-					el.setAttribute(attr.name, format(attr.value, placeholders));
+					const value = format(attr.value, placeholders, true);
+					if (value !== false) {
+						el.setAttribute(attr.name, value);
+					}
 				} else {
-					el.setAttribute(format(attr.name, placeholders), format(attr.value, placeholders));
+					const name = format(attr.name, placeholders, true);
+					const value = format(attr.value, placeholders, true);
+					if (name !== false && value !== false) {
+						el.setAttribute(name, value);
+					}
 				}
 			});
 		}
