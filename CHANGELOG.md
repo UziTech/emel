@@ -1,3 +1,10 @@
+## [2.3.2](https://github.com/UziTech/emel/compare/v2.3.1...v2.3.2) (2021-01-09)
+
+
+### Bug Fixes
+
+* remove ids classes bool attr docs ([44a3d5e](https://github.com/UziTech/emel/commit/44a3d5e701b43987b6a7e5638aa540737f9c1a8a))
+
 ## [2.3.1](https://github.com/UziTech/emel/compare/v2.3.0...v2.3.1) (2021-01-09)
 
 
