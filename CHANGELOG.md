@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/UziTech/emel/compare/v2.3.0...v2.3.1) (2021-01-09)
+
+
+### Bug Fixes
+
+* only unset attribute if name is false and retain name when true ([fafd059](https://github.com/UziTech/emel/commit/fafd0597294e9d522eb3993fb77e7c665ec5d3f9))
+
 # [2.3.0](https://github.com/UziTech/emel/compare/v2.2.4...v2.3.0) (2021-01-09)
 
 
