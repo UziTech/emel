@@ -161,24 +161,6 @@ emel("div[attr.]", {
 // <div></div>
 ```
 
-This includes ids and classes
-
-```js
-emel("div#id", {
-  placeholders: {
-    id: false
-  }
-});
-// <div></div>
-
-emel("div.class", {
-  placeholders: {
-    class: false
-  }
-});
-// <div></div>
-```
-
 Attribute name placeholders that equal `true` will not be changed.
 
 ```js
