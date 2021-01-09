@@ -6,7 +6,7 @@ if (typeof emmet.default === "function") {
 	emmet = emmet.default;
 }
 
-function format(value, placeholders, isAttr = false) {
+function format(value, placeholders, isAttrName = false) {
 	if (Array.isArray(value)) {
 		value = value[0];
 	}
@@ -22,8 +22,8 @@ function format(value, placeholders, isAttr = false) {
 		}
 	}
 
-	if (isAttr) {
-		if (value === null || typeof value === "undefined") {
+	if (isAttrName) {
+		if (value === false || value === null || typeof value === "undefined") {
 			return false;
 		} else if (value === true) {
 			return origValue;
