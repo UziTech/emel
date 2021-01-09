@@ -205,18 +205,70 @@ describe("emel", () => {
 		});
 
 		describe("boolean", () => {
-			test("should replace with a number", () => {
+			test("should replace with 'true'", () => {
 				const el = emel("div{?}", {
 					placeholders: true
 				});
 				expect(el.childNodes[0].textContent).toBe("true");
 			});
 
-			test("should replace with a zero", () => {
+			test("should replace with 'false'", () => {
 				const el = emel("div{?}", {
 					placeholders: false
 				});
 				expect(el.childNodes[0].textContent).toBe("false");
+			});
+
+			test("should remove attribute on false value", () => {
+				const el = emel("div[attr=val]", {
+					placeholders: {val: false}
+				});
+				expect(el.childNodes[0].getAttribute("attr")).toBe(null);
+			});
+
+			test("should remove attribute on false name", () => {
+				const el = emel("div[attr=val]", {
+					placeholders: {attr: false}
+				});
+				expect(el.childNodes[0].getAttribute("false")).toBe(null);
+				expect(el.childNodes[0].getAttribute("attr")).toBe(null);
+			});
+
+			test("should remove id on false", () => {
+				const el = emel("div#val", {
+					placeholders: {val: false}
+				});
+				expect(el.childNodes[0].getAttribute("id")).toBe(null);
+			});
+
+			test("should remove class on false", () => {
+				const el = emel("div.val", {
+					placeholders: {val: false}
+				});
+				expect(el.childNodes[0].getAttribute("class")).toBe(null);
+			});
+
+			test("should remove boolean attribute on false", () => {
+				const el = emel("div[val.]", {
+					placeholders: {val: false}
+				});
+				expect(el.childNodes[0].getAttribute("false")).toBe(null);
+				expect(el.childNodes[0].getAttribute("val")).toBe(null);
+			});
+
+			test("should remove attribute on null", () => {
+				const el = emel("div[attr=val]", {
+					placeholders: {val: null}
+				});
+				expect(el.childNodes[0].getAttribute("attr")).toBe(null);
+			});
+
+			test("should remove attribute on undefined", () => {
+				let undef;
+				const el = emel("div[attr=val]", {
+					placeholders: {val: undef}
+				});
+				expect(el.childNodes[0].getAttribute("attr")).toBe(null);
 			});
 		});
 
