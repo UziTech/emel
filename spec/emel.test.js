@@ -219,11 +219,11 @@ describe("emel", () => {
 				expect(el.childNodes[0].textContent).toBe("false");
 			});
 
-			test("should remove attribute on false value", () => {
+			test("should replace attribute with 'false'", () => {
 				const el = emel("div[attr=val]", {
 					placeholders: {val: false}
 				});
-				expect(el.childNodes[0].getAttribute("attr")).toBe(null);
+				expect(el.childNodes[0].getAttribute("attr")).toBe("false");
 			});
 
 			test("should remove attribute on false name", () => {
@@ -234,41 +234,41 @@ describe("emel", () => {
 				expect(el.childNodes[0].getAttribute("attr")).toBe(null);
 			});
 
-			test("should remove id on false", () => {
-				const el = emel("div#val", {
-					placeholders: {val: false}
-				});
-				expect(el.childNodes[0].getAttribute("id")).toBe(null);
-			});
-
-			test("should remove class on false", () => {
-				const el = emel("div.val", {
-					placeholders: {val: false}
-				});
-				expect(el.childNodes[0].getAttribute("class")).toBe(null);
-			});
-
 			test("should remove boolean attribute on false", () => {
-				const el = emel("div[val.]", {
-					placeholders: {val: false}
+				const el = emel("div[attr.]", {
+					placeholders: {attr: false}
 				});
 				expect(el.childNodes[0].getAttribute("false")).toBe(null);
-				expect(el.childNodes[0].getAttribute("val")).toBe(null);
+				expect(el.childNodes[0].getAttribute("attr")).toBe(null);
 			});
 
 			test("should remove attribute on null", () => {
-				const el = emel("div[attr=val]", {
-					placeholders: {val: null}
+				const el = emel("div[attr.]", {
+					placeholders: {attr: null}
 				});
 				expect(el.childNodes[0].getAttribute("attr")).toBe(null);
 			});
 
 			test("should remove attribute on undefined", () => {
 				let undef;
-				const el = emel("div[attr=val]", {
-					placeholders: {val: undef}
+				const el = emel("div[attr.]", {
+					placeholders: {attr: undef}
 				});
 				expect(el.childNodes[0].getAttribute("attr")).toBe(null);
+			});
+
+			test("should retain boolean attribute on true value", () => {
+				const el = emel("div[attr.]", {
+					placeholders: {attr: true}
+				});
+				expect(el.childNodes[0].getAttribute("attr")).toBe("");
+			});
+
+			test("should retain attribute on true value", () => {
+				const el = emel("div[attr=val]", {
+					placeholders: {attr: true}
+				});
+				expect(el.childNodes[0].getAttribute("attr")).toBe("val");
 			});
 		});
 

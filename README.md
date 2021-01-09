@@ -136,7 +136,7 @@ emel("div{?}", {
 // <div><span>text</span></div>
 ```
 
-Attribute name or value placeholders that equal `false`, `null`, or `undefined` will not be set.
+Attribute name placeholders that equal `false`, `null`, or `undefined` will not be set.
 
 ```js
 emel("div[attr=val]", {
@@ -148,17 +148,17 @@ emel("div[attr=val]", {
 
 emel("div[attr=val]", {
   placeholders: {
-    val: null
+    attr: null
   }
 });
 // <div></div>
 
-emel("input[type='checkbox' checked.]", {
+emel("div[attr.]", {
   placeholders: {
-    checked: false
+    attr: false
   }
 });
-// <input type="checkbox" />
+// <div></div>
 ```
 
 This includes ids and classes
@@ -177,4 +177,22 @@ emel("div.class", {
   }
 });
 // <div></div>
+```
+
+Attribute name placeholders that equal `true` will not be changed.
+
+```js
+emel("input[type='checkbox' checked.]", {
+  placeholders: {
+    checked: false
+  }
+});
+// <input type="checked" />
+
+emel("input[type='checkbox' checked.]", {
+  placeholders: {
+    checked: true
+  }
+});
+// <input type="checked" checked/>
 ```

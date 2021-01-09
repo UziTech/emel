@@ -10,6 +10,7 @@ function format(value, placeholders, isAttr = false) {
 	if (Array.isArray(value)) {
 		value = value[0];
 	}
+	const origValue = value;
 	if (value in placeholders) {
 		const placeholder = placeholders[value];
 		if (Array.isArray(placeholder)) {
@@ -20,7 +21,16 @@ function format(value, placeholders, isAttr = false) {
 			value = placeholder;
 		}
 	}
-	return isAttr && (value === null || typeof value === "undefined") ? false : value;
+
+	if (isAttr) {
+		if (value === null || typeof value === "undefined") {
+			return false;
+		} else if (value === true) {
+			return origValue;
+		}
+	}
+
+	return value;
 }
 
 function createElementFromNode(placeholders) {
@@ -39,14 +49,11 @@ function createElementFromNode(placeholders) {
 						el.setAttribute(name, "");
 					}
 				} else if (["id", "class"].includes(attr.name)) {
-					const value = format(attr.value, placeholders, true);
-					if (value !== false) {
-						el.setAttribute(attr.name, value);
-					}
+					el.setAttribute(attr.name, format(attr.value, placeholders));
 				} else {
 					const name = format(attr.name, placeholders, true);
-					const value = format(attr.value, placeholders, true);
-					if (name !== false && value !== false) {
+					const value = format(attr.value, placeholders);
+					if (name !== false) {
 						el.setAttribute(name, value);
 					}
 				}
