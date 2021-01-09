@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/UziTech/emel/compare/v2.2.4...v2.3.0) (2021-01-09)
+
+
+### Features
+
+* Don't set attribute when placeholder is false ([f244c4f](https://github.com/UziTech/emel/commit/f244c4f27a876f4780cc49869d983b27cfdbe7db))
+
 ## [2.2.4](https://github.com/UziTech/emel/compare/v2.2.3...v2.2.4) (2020-12-27)
 
 
