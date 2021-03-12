@@ -314,5 +314,104 @@ describe("emel", () => {
 				expect(el.childNodes[1].textContent).toBe("text2");
 			});
 		});
+
+		describe("options is placeholder", () => {
+			describe("node", () => {
+				test("should replace placeholder with HTMLElement", () => {
+					const span = document.createElement("span");
+					const el = emel("div{?}", span);
+					expect(el.childNodes[0].childNodes.length).toBe(1);
+					expect(el.childNodes[0].childNodes[0].tagName.toLowerCase()).toBe("span");
+				});
+			});
+
+			describe("array", () => {
+				test("should replace placeholder in textNode", () => {
+					const el = emel("{?}", ["test"]);
+					expect(el.childNodes[0].nodeType).toBe(Node.TEXT_NODE);
+					expect(el.childNodes[0].textContent).toBe("test");
+				});
+			});
+
+			describe("string", () => {
+				test("should replace all placeholders", () => {
+					const el = emel("?{?}#?.?[?=?]", "test");
+					expect(el.childNodes[0].tagName.toLowerCase()).toBe("test");
+					expect(el.childNodes[0].id).toBe("test");
+					expect(el.childNodes[0].classList.contains("test")).toBe(true);
+					expect(el.childNodes[0].getAttribute("test")).toBe("test");
+					expect(el.childNodes[0].textContent).toBe("test");
+				});
+			});
+
+			describe("number", () => {
+				test("should replace with a number", () => {
+					const el = emel("div{?}", 0);
+					expect(el.childNodes[0].textContent).toBe("0");
+				});
+			});
+
+			describe("boolean", () => {
+				test("should replace with 'false'", () => {
+					const el = emel("div{?}", false);
+					expect(el.childNodes[0].textContent).toBe("false");
+				});
+			});
+		});
+	});
+
+	describe("multiline", () => {
+		test("error by default", () => {
+			expect(() => {
+				emel(`
+					div{div1}+
+					div{div2}
+				`);
+			}).toThrow();
+		});
+
+		test("allow multiline in text", () => {
+			const el = emel("div{line 1\nline 2}");
+			expect(el.childNodes[0].textContent.trim()).toBe("line 1\nline 2");
+		});
+
+		test("remove multiline in text", () => {
+			const el = emel("div{line 1\nline 2}", {multiline: true});
+			expect(el.childNodes[0].textContent.trim()).toBe("line 1line 2");
+		});
+
+		test("remove all newlines", () => {
+			const el = emel(`
+				div{
+					div1
+				}+
+				div{
+					div2
+				}
+			`, {multiline: true});
+			expect(el.childNodes[0].textContent).toBe("div1");
+			expect(el.childNodes[1].textContent).toBe("div2");
+		});
+
+		test("keep space in text", () => {
+			const el = emel(`
+				div{div 1}+
+				div{div 2}
+			`, {multiline: true});
+			expect(el.childNodes[0].textContent).toBe("div 1");
+			expect(el.childNodes[1].textContent).toBe("div 2");
+			console.log(emel(`
+			table>
+			  thead>
+			    tr>
+			      th{col1}+
+			      th{col2}^^
+			  tbody>
+			    tr>
+			      td[colspan=2]{2 col width}^
+			    tr>
+			      td.col\${1 col width}*2
+			`, {multiline: true}).firstChild.innerHTML);
+		});
 	});
 });

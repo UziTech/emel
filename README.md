@@ -43,6 +43,61 @@ const element = emel(emmetString);
  */
 ```
 
+### Multiline
+
+By default space characters are not allowed outside of text nodes.
+If you want to write readable strings with multiple lines you can use the `multiline` option to remove newline characters and surrounding spaces.
+
+```js
+emel(`
+table>
+  thead>
+    tr>
+      th{col1}+
+      th{col2}^^
+  tbody>
+    tr>
+      td[colspan=2]{2 col width}^
+    tr>
+      td.col\${1 col width}*2
+`, {
+  multiline: true
+});
+/**
+ * <table>
+ *   <thead>
+ *     <tr>
+ *       <th>col1</th>
+ *       <th>col2</th>
+ *     </tr>
+ *   </thead>
+ *   <tbody>
+ *     <tr>
+ *       <td colspan="2">2 col width</td>
+ *     </tr>
+ *     <tr>
+ *       <td class="col1">1 col width</td>
+ *       <td class="col2">1 col width</td>
+ *     </tr>
+ *   </tbody>
+ * </table>
+ */
+```
+
+***Note***: The `multiline` option will remove newline characters and surrounding spaces from text nodes as well (which might not be expected).
+
+```js
+emel(`
+div{
+  line 1
+  line 2
+}
+`, {
+  multiline: true
+})
+// <div>line 1line 2</div>
+```
+
 ### Placeholders
 
 You can use placeholders to insert dynamic content into any string value.
