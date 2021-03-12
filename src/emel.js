@@ -78,6 +78,7 @@ function createElementFromNode(placeholders) {
 }
 
 const defaultOptions = {
+	multiline: false,
 	placeholders: {},
 };
 
@@ -124,6 +125,9 @@ function emel(str = "", options = {}) {
 	if ("?" in options.placeholders) {
 		// escape unescaped questionmarks
 		str = str.replace(/(^|[^\\])(\\\\)*\?/g, "$1$2\\?");
+	}
+	if (options.multiline) {
+		str = str.replace(/\s*?\n\s*/g, "");
 	}
 	const tree = emmet(str);
 	const children = tree.children.map(createElementFromNode(options.placeholders));

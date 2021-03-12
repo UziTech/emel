@@ -359,4 +359,59 @@ describe("emel", () => {
 			});
 		});
 	});
+
+	describe("multiline", () => {
+		test("error by default", () => {
+			expect(() => {
+				emel(`
+					div{div1}+
+					div{div2}
+				`);
+			}).toThrow();
+		});
+
+		test("allow multiline in text", () => {
+			const el = emel("div{line 1\nline 2}");
+			expect(el.childNodes[0].textContent.trim()).toBe("line 1\nline 2");
+		});
+
+		test("remove multiline in text", () => {
+			const el = emel("div{line 1\nline 2}", {multiline: true});
+			expect(el.childNodes[0].textContent.trim()).toBe("line 1line 2");
+		});
+
+		test("remove all newlines", () => {
+			const el = emel(`
+				div{
+					div1
+				}+
+				div{
+					div2
+				}
+			`, {multiline: true});
+			expect(el.childNodes[0].textContent).toBe("div1");
+			expect(el.childNodes[1].textContent).toBe("div2");
+		});
+
+		test("keep space in text", () => {
+			const el = emel(`
+				div{div 1}+
+				div{div 2}
+			`, {multiline: true});
+			expect(el.childNodes[0].textContent).toBe("div 1");
+			expect(el.childNodes[1].textContent).toBe("div 2");
+			console.log(emel(`
+			table>
+			  thead>
+			    tr>
+			      th{col1}+
+			      th{col2}^^
+			  tbody>
+			    tr>
+			      td[colspan=2]{2 col width}^
+			    tr>
+			      td.col\${1 col width}*2
+			`, {multiline: true}).firstChild.innerHTML);
+		});
+	});
 });
