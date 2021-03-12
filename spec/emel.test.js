@@ -103,6 +103,16 @@ describe("emel", () => {
 				expect(el.childNodes[0].getAttribute("attr")).toBe("value");
 				expect(el.childNodes[0].textContent).toBe("text");
 				expect(el.childNodes[0].customProperty).toBe(true);
+				expect(el.childNodes[0]).toBe(span);
+			});
+
+			test("should use placeholder instead of creating new element", () => {
+				const span1 = document.createElement("span");
+				const span2 = document.createElement("span");
+				const el = emel("?+?", { placeholders: [span1, span2] });
+				expect(el.childNodes.length).toBe(2);
+				expect(el.childNodes[0]).toBe(span1);
+				expect(el.childNodes[1]).toBe(span2);
 			});
 		});
 
