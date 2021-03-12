@@ -106,13 +106,23 @@ describe("emel", () => {
 				expect(el.childNodes[0]).toBe(span);
 			});
 
-			test("should use placeholder instead of creating new element", () => {
+			test("should allow placeholder siblings", () => {
 				const span1 = document.createElement("span");
 				const span2 = document.createElement("span");
 				const el = emel("?+?", { placeholders: [span1, span2] });
 				expect(el.childNodes.length).toBe(2);
 				expect(el.childNodes[0]).toBe(span1);
 				expect(el.childNodes[1]).toBe(span2);
+			});
+
+			test("should allow placeholder children", () => {
+				const span1 = document.createElement("span");
+				const span2 = document.createElement("span");
+				const el = emel("?>?", { placeholders: [span1, span2] });
+				expect(el.childNodes.length).toBe(1);
+				expect(el.childNodes[0]).toBe(span1);
+				expect(el.childNodes[0].childNodes.length).toBe(1);
+				expect(el.childNodes[0].childNodes[0]).toBe(span2);
 			});
 		});
 
