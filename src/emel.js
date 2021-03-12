@@ -81,17 +81,24 @@ const defaultOptions = {
 	placeholders: {},
 };
 
+function isPlaceholderObject(obj) {
+	return (
+		typeof obj === "string" ||
+		typeof obj === "number" ||
+		typeof obj === "boolean" ||
+		Array.isArray(obj) ||
+		obj instanceof Node
+	);
+}
+
 function getOptions(opts) {
+	if (isPlaceholderObject(opts)) {
+		opts = {placeholders: { "?": opts}};
+	}
 	const options = {...defaultOptions, ...opts};
 
 	if ("placeholders" in opts) {
-		if (
-			typeof options.placeholders === "string" ||
-			typeof options.placeholders === "number" ||
-			typeof options.placeholders === "boolean" ||
-			Array.isArray(options.placeholders) ||
-			options.placeholders instanceof Node
-		) {
+		if (isPlaceholderObject(options.placeholders)) {
 			options.placeholders = {
 				"?": options.placeholders,
 			};
@@ -115,7 +122,8 @@ function emel(str = "", options = {}) {
 		throw new Error("Must be in a browser");
 	}
 	if ("?" in options.placeholders) {
-		str = str.replace(/(^|[^\\])\?/g, "$1\\?");
+		// escape unescaped questionmarks
+		str = str.replace(/(^|[^\\])(\\\\)*\?/g, "$1$2\\?");
 	}
 	const tree = emmet(str);
 	const children = tree.children.map(createElementFromNode(options.placeholders));

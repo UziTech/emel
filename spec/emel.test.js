@@ -314,5 +314,49 @@ describe("emel", () => {
 				expect(el.childNodes[1].textContent).toBe("text2");
 			});
 		});
+
+		describe("options is placeholder", () => {
+			describe("node", () => {
+				test("should replace placeholder with HTMLElement", () => {
+					const span = document.createElement("span");
+					const el = emel("div{?}", span);
+					expect(el.childNodes[0].childNodes.length).toBe(1);
+					expect(el.childNodes[0].childNodes[0].tagName.toLowerCase()).toBe("span");
+				});
+			});
+
+			describe("array", () => {
+				test("should replace placeholder in textNode", () => {
+					const el = emel("{?}", ["test"]);
+					expect(el.childNodes[0].nodeType).toBe(Node.TEXT_NODE);
+					expect(el.childNodes[0].textContent).toBe("test");
+				});
+			});
+
+			describe("string", () => {
+				test("should replace all placeholders", () => {
+					const el = emel("?{?}#?.?[?=?]", "test");
+					expect(el.childNodes[0].tagName.toLowerCase()).toBe("test");
+					expect(el.childNodes[0].id).toBe("test");
+					expect(el.childNodes[0].classList.contains("test")).toBe(true);
+					expect(el.childNodes[0].getAttribute("test")).toBe("test");
+					expect(el.childNodes[0].textContent).toBe("test");
+				});
+			});
+
+			describe("number", () => {
+				test("should replace with a number", () => {
+					const el = emel("div{?}", 0);
+					expect(el.childNodes[0].textContent).toBe("0");
+				});
+			});
+
+			describe("boolean", () => {
+				test("should replace with 'false'", () => {
+					const el = emel("div{?}", false);
+					expect(el.childNodes[0].textContent).toBe("false");
+				});
+			});
+		});
 	});
 });
