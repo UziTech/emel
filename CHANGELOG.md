@@ -1,3 +1,10 @@
+## [2.4.1](https://github.com/UziTech/emel/compare/v2.4.0...v2.4.1) (2021-03-12)
+
+
+### Bug Fixes
+
+* fix node placeholder for tagname ([33a2ea3](https://github.com/UziTech/emel/commit/33a2ea3a29049bcb7fc1f88aa66751559eee55a9))
+
 # [2.4.0](https://github.com/UziTech/emel/compare/v2.3.3...v2.4.0) (2021-03-12)
 
 
