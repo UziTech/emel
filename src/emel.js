@@ -39,7 +39,8 @@ function createElementFromNode(placeholders) {
 			return document.createTextNode(format(node.value, placeholders));
 		}
 
-		const el = document.createElement(format(node.name || "div", placeholders));
+		const tag = format(node.name || "div", placeholders);
+		const el = tag instanceof Node ? tag : document.createElement(tag);
 
 		if (node.attributes) {
 			node.attributes.forEach(attr => {

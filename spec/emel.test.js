@@ -91,6 +91,19 @@ describe("emel", () => {
 				expect(el.childNodes[0].childNodes.length).toBe(1);
 				expect(el.childNodes[0].childNodes[0].tagName.toLowerCase()).toBe("span");
 			});
+
+			test("should use placeholder instead of creating new element", () => {
+				const span = document.createElement("span");
+				span.customProperty = true;
+				const el = emel("?#id.class[attr=value]{text}", { placeholders: span });
+				expect(el.childNodes.length).toBe(1);
+				expect(el.childNodes[0].tagName.toLowerCase()).toBe("span");
+				expect(el.childNodes[0].id).toBe("id");
+				expect(el.childNodes[0].className).toBe("class");
+				expect(el.childNodes[0].getAttribute("attr")).toBe("value");
+				expect(el.childNodes[0].textContent).toBe("text");
+				expect(el.childNodes[0].customProperty).toBe(true);
+			});
 		});
 
 		describe("array", () => {
@@ -400,18 +413,6 @@ describe("emel", () => {
 			`, {multiline: true});
 			expect(el.childNodes[0].textContent).toBe("div 1");
 			expect(el.childNodes[1].textContent).toBe("div 2");
-			console.log(emel(`
-			table>
-			  thead>
-			    tr>
-			      th{col1}+
-			      th{col2}^^
-			  tbody>
-			    tr>
-			      td[colspan=2]{2 col width}^
-			    tr>
-			      td.col\${1 col width}*2
-			`, {multiline: true}).firstChild.innerHTML);
 		});
 	});
 });
