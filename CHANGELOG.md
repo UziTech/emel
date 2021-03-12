@@ -1,3 +1,11 @@
+# [2.4.0](https://github.com/UziTech/emel/compare/v2.3.3...v2.4.0) (2021-03-12)
+
+
+### Features
+
+* add multiline option ([1dc26a2](https://github.com/UziTech/emel/commit/1dc26a2b88768a85d98946b69bd30d1cc874da25))
+* allow placeholder only as second parameter ([fa53f63](https://github.com/UziTech/emel/commit/fa53f6389d8a31b186bc4e4ace57919b6657290f))
+
 ## [2.3.3](https://github.com/UziTech/emel/compare/v2.3.2...v2.3.3) (2021-02-12)
 
 
