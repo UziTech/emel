@@ -1,3 +1,10 @@
+## [2.4.2](https://github.com/UziTech/emel/compare/v2.4.1...v2.4.2) (2021-03-22)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @emmetio/abbreviation to ^2.2.2 ([adaeab5](https://github.com/UziTech/emel/commit/adaeab5f88900e7257fb1a4edc374e6af2e3b9f2))
+
 ## [2.4.1](https://github.com/UziTech/emel/compare/v2.4.0...v2.4.1) (2021-03-12)
 
 
