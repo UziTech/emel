@@ -94,11 +94,11 @@ function isPlaceholderObject(obj) {
 	);
 }
 
-function getOptions(opts) {
+function getOptions(opts, defaults = defaultOptions) {
 	if (isPlaceholderObject(opts)) {
 		opts = {placeholders: { "?": opts}};
 	}
-	const options = {...defaultOptions, ...opts};
+	const options = {...defaults, ...opts};
 
 	if ("placeholders" in opts) {
 		if (isPlaceholderObject(options.placeholders)) {
@@ -119,6 +119,18 @@ function getOptions(opts) {
 }
 
 function emel(str = "", options = {}) {
+
+	if (this instanceof emel) {
+		let opts = defaultOptions;
+		if (str && typeof str === "object") {
+			opts = getOptions(str);
+		}
+		this.emel = (s = "", o = {}) => {
+			return emel(s, getOptions(o, opts));
+		};
+		return;
+	}
+
 	options = getOptions(options);
 	/* istanbul ignore next */
 	if (!document || !document.createElement) {

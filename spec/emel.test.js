@@ -456,4 +456,19 @@ describe("emel", () => {
 			expect(el.textContent).toBe("test");
 		});
 	});
+
+	describe("emel class", () => {
+		test("should set emel prop", () => {
+			const e = new emel();
+			expect(e.emel().nodeType).toBe(Node.DOCUMENT_FRAGMENT_NODE);
+			expect(e.emel("div").childNodes[0].nodeType).toBe(Node.ELEMENT_NODE);
+		});
+
+		test("should set options", () => {
+			const {emel: newEmel} = new emel({returnSingleChild: true});
+			const el = newEmel("div{test}");
+			expect(el.nodeType).toBe(Node.ELEMENT_NODE);
+			expect(el.textContent).toBe("test");
+		});
+	});
 });

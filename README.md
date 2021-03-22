@@ -49,6 +49,21 @@ const element = emel(emmetString, options);
  */
 ```
 
+### Setting default options
+
+You can set the default options by creating a new instance of emel and pass the default options.
+
+
+```js
+const Emel = require("emel");
+const {emel} = new Emel({placeholders: [1, 2]});
+const element = emel("div{?}+div{?}");
+/**
+ * <div>1</div>
+ * <div>2</div>
+ */
+```
+
 ### ReturnSingleChild
 
 By default emel will always return the elements as children of a document fragment.
