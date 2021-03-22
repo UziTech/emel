@@ -1,3 +1,11 @@
+# [2.5.0](https://github.com/UziTech/emel/compare/v2.4.2...v2.5.0) (2021-03-22)
+
+
+### Features
+
+* add returnSingleChild option ([28f4a22](https://github.com/UziTech/emel/commit/28f4a22441ab3748e39c30a52babd06eafb8203d))
+* allow setting default options ([10b4f12](https://github.com/UziTech/emel/commit/10b4f12fccbe2f1abc3ef0a286e446708965592a))
+
 ## [2.4.2](https://github.com/UziTech/emel/compare/v2.4.1...v2.4.2) (2021-03-22)
 
 
