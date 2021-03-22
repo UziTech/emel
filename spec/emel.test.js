@@ -435,4 +435,25 @@ describe("emel", () => {
 			expect(el.childNodes[1].textContent).toBe("div 2");
 		});
 	});
+
+	describe("returnSingleChild", () => {
+		test("should return single child", () => {
+			const el = emel("div", {returnSingleChild: true});
+			expect(el.nodeType).toBe(Node.ELEMENT_NODE);
+			expect(el.tagName.toLowerCase()).toBe("div");
+			expect(el.childNodes).toHaveLength(0);
+		});
+
+		test("should return a docment fragment", () => {
+			const el = emel("div*2", {returnSingleChild: true});
+			expect(el.nodeType).toBe(Node.DOCUMENT_FRAGMENT_NODE);
+			expect(el.childNodes).toHaveLength(2);
+		});
+
+		test("should return a text fragment", () => {
+			const el = emel("{test}", {returnSingleChild: true});
+			expect(el.nodeType).toBe(Node.TEXT_NODE);
+			expect(el.textContent).toBe("test");
+		});
+	});
 });

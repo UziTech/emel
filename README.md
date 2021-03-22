@@ -18,6 +18,7 @@ npm install emel
 You can use any [emmet abbreviation](https://docs.emmet.io/abbreviations/syntax/).
 
 Options:
+- [`returnSingleChild`](#returnsinglechild): `boolean`
 - [`multiline`](#multiline): `boolean`
 - [`placeholders`](#placeholders): `mixed`
 
@@ -47,6 +48,11 @@ const element = emel(emmetString, options);
  * </table>
  */
 ```
+
+### ReturnSingleChild
+
+By default emel will always return the elements as children of a document fragment.
+If you set the `returnSingleChild` option to `true` it will only wrap the elements in a document fragment if there are multiple top level elements.
 
 ### Multiline
 

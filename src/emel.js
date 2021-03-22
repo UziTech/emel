@@ -79,6 +79,7 @@ function createElementFromNode(placeholders) {
 }
 
 const defaultOptions = {
+	returnSingleChild: false,
 	multiline: false,
 	placeholders: {},
 };
@@ -132,6 +133,10 @@ function emel(str = "", options = {}) {
 	}
 	const tree = emmet(str);
 	const children = tree.children.map(createElementFromNode(options.placeholders));
+
+	if (options.returnSingleChild && children.length === 1) {
+		return children[0];
+	}
 
 	return children.reduce((el, child) => {
 		el.appendChild(child);
