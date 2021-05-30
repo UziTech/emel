@@ -16,4 +16,5 @@ module.exports = {
 		}
 	},
 	testRegex: /\.test\.jsx?$/.source,
+	testEnvironment: "jsdom",
 };
