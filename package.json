@@ -35,7 +35,7 @@
     "@semantic-release/release-notes-generator": "^9.0.3",
     "eslint": "^7.28.0",
     "jest-cli": "^27.0.4",
-    "semantic-release": "^17.4.3"
+    "semantic-release": "^17.4.4"
   },
   "release": {
     "plugins": [
