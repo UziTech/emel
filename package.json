@@ -34,8 +34,8 @@
     "@semantic-release/npm": "^9.0.1",
     "@semantic-release/release-notes-generator": "^10.0.3",
     "eslint": "^8.23.0",
-    "jest-cli": "^29.0.1",
-    "jest-environment-jsdom": "^29.0.1",
+    "jest-cli": "^29.0.2",
+    "jest-environment-jsdom": "^29.0.2",
     "semantic-release": "^19.0.5"
   },
   "release": {
