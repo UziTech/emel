@@ -36,7 +36,7 @@
     "eslint": "^8.39.0",
     "jest-cli": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
-    "semantic-release": "^21.0.1"
+    "semantic-release": "^21.0.2"
   },
   "release": {
     "plugins": [
