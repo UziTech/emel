@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 	restoreMocks: true,
 	clearMocks: true,
 	// collectCoverage: true,
@@ -15,6 +15,6 @@ module.exports = {
 			"statements": 100
 		}
 	},
-	testRegex: /\.test\.jsx?$/.source,
+	testRegex: /\.test\.c?js$/.source,
 	testEnvironment: "jsdom",
 };

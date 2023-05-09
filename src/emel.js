@@ -1,10 +1,4 @@
-let emmet = require("@emmetio/abbreviation");
-
-/* istanbul ignore next */
-if (typeof emmet.default === "function") {
-	// fixes webpack including the es module version
-	emmet = emmet.default;
-}
+import emmet from "@emmetio/abbreviation";
 
 function format(value, placeholders, isAttrName = false) {
 	if (Array.isArray(value)) {
@@ -118,7 +112,7 @@ function getOptions(opts, defaults = defaultOptions) {
 	return options;
 }
 
-function emel(str = "", options = {}) {
+export default function emel(str = "", options = {}) {
 
 	if (this instanceof emel) {
 		let opts = defaultOptions;
@@ -155,5 +149,3 @@ function emel(str = "", options = {}) {
 		return el;
 	}, document.createDocumentFragment());
 }
-
-module.exports = emel;
