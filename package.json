@@ -17,8 +17,8 @@
     }
   },
   "scripts": {
-    "test": "jest --verbose",
-    "test:cover": "jest --coverage",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --verbose",
+    "test:cover": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage",
     "lint": "eslint .",
     "format": "eslint . --fix",
     "build": "rollup -c rollup.config.js"
@@ -49,6 +49,7 @@
     "@semantic-release/github": "^8.0.7",
     "@semantic-release/npm": "^10.0.3",
     "@semantic-release/release-notes-generator": "^11.0.1",
+    "cross-env": "^7.0.3",
     "eslint": "^8.40.0",
     "jest-cli": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",

@@ -17,4 +17,5 @@ export default {
 	},
 	testRegex: /\.test\.c?js$/.source,
 	testEnvironment: "jsdom",
+	transform: {},
 };

@@ -1,4 +1,4 @@
-const emel = require("../dist/emel.cjs");
+import emel from "../src/emel.js";
 
 describe("emel", () => {
 	test("should return a document fagment", () => {
