@@ -17,8 +17,8 @@
     }
   },
   "scripts": {
-    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --verbose",
-    "test:cover": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage",
+    "test": "npm run build && cross-env NODE_OPTIONS=--experimental-vm-modules jest --verbose",
+    "test:cover": "npm run build && cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage",
     "lint": "eslint .",
     "format": "eslint . --fix",
     "build": "rollup -c rollup.config.js"
