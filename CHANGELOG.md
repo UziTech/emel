@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/UziTech/emel/compare/v2.5.1...v3.0.0) (2023-05-11)
+
+
+### Bug Fixes
+
+* rewrite in esm ([#364](https://github.com/UziTech/emel/issues/364)) ([afd5eb2](https://github.com/UziTech/emel/commit/afd5eb2fb00fed9ab41a6e915bcf12469e38dbda))
+
+
+### BREAKING CHANGES
+
+* rewrite in esm
+
 ## [2.5.1](https://github.com/UziTech/emel/compare/v2.5.0...v2.5.1) (2022-02-13)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "emel",
-  "version": "2.5.1",
+  "version": "3.0.0",
   "description": "Create DOM elements with Emmet",
   "main": "./dist/emel.cjs",
   "module": "./src/emel.js",
