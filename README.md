@@ -1,5 +1,4 @@
 [![Actions Status](https://github.com/UziTech/emel/workflows/CI/badge.svg)](https://github.com/UziTech/emel/actions)
-[![Dependency Status](https://david-dm.org/UziTech/emel.svg)](https://david-dm.org/UziTech/emel)
 
 # emel
 
