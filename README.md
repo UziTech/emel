@@ -23,7 +23,8 @@ Options:
 - [`placeholders`](#placeholders): `mixed`
 
 ```js
-const emel = require("emel");
+import emel from "emel";
+// or const emel = require("emel");
 const emmetString = "table>thead>tr>th{col1}+th{col2}^^tbody>(tr>td[colspan=2]{2 col width})+tr>td.col${1 col width}*2";
 const options = {};
 const element = emel(emmetString, options);
@@ -55,7 +56,8 @@ You can set the default options by creating a new instance of emel and pass the 
 
 
 ```js
-const Emel = require("emel");
+import Emel from "emel";
+// or const Emel = require("emel");
 const {emel} = new Emel({placeholders: [1, 2]});
 const element = emel("div{?}+div{?}");
 /**
