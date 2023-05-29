@@ -48,7 +48,7 @@
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^8.1.0",
     "@semantic-release/npm": "^10.0.3",
-    "@semantic-release/release-notes-generator": "^11.0.1",
+    "@semantic-release/release-notes-generator": "^11.0.2",
     "cross-env": "^7.0.3",
     "eslint": "^8.41.0",
     "jest-cli": "^29.5.0",
