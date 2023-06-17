@@ -50,7 +50,7 @@
     "@semantic-release/npm": "^10.0.4",
     "@semantic-release/release-notes-generator": "^11.0.3",
     "cross-env": "^7.0.3",
-    "eslint": "^8.42.0",
+    "eslint": "^8.43.0",
     "jest-cli": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
     "rollup": "^3.25.1",
