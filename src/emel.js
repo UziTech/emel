@@ -76,7 +76,6 @@ const defaultOptions = {
 	returnSingleChild: false,
 	multiline: false,
 	placeholders: {},
-	doc: document,
 };
 
 function isPlaceholderObject(obj) {
@@ -129,7 +128,7 @@ export default function emel(str = "", options = {}) {
 	options = getOptions(options);
 
 	/** @type {Document} */
-	const doc = options.doc;
+	const doc = options.doc || document;
 
 	/* istanbul ignore next */
 	if (!doc || !doc.createElement) {
