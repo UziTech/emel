@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/UziTech/emel/compare/v3.0.0...v3.1.0) (2023-07-08)
+
+
+### Features
+
+* Add options.doc for Angular SSR ([#399](https://github.com/UziTech/emel/issues/399)) ([e5b2dde](https://github.com/UziTech/emel/commit/e5b2dde74de59b601bd33d7154a1c1fef299c72a))
+
 # [3.0.0](https://github.com/UziTech/emel/compare/v2.5.1...v3.0.0) (2023-05-11)
 
 
