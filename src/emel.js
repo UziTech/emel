@@ -27,14 +27,14 @@ function format(value, placeholders, isAttrName = false) {
 	return value;
 }
 
-function createElementFromNode(placeholders) {
+function createElementFromNode(placeholders, /** @type {Document} */ doc) {
 	return (node) => {
 		if (node.value && !node.name && !node.attributes && node.children.length === 0) {
-			return document.createTextNode(format(node.value, placeholders));
+			return doc.createTextNode(format(node.value, placeholders));
 		}
 
 		const tag = format(node.name || "div", placeholders);
-		const el = tag instanceof Node ? tag : document.createElement(tag);
+		const el = tag instanceof Node ? tag : doc.createElement(tag);
 
 		if (node.attributes) {
 			node.attributes.forEach(attr => {
@@ -65,7 +65,7 @@ function createElementFromNode(placeholders) {
 		}
 
 		node.children
-			.map(createElementFromNode(placeholders))
+			.map(createElementFromNode(placeholders, doc))
 			.forEach(child => el.appendChild(child));
 
 		return el;
@@ -90,9 +90,9 @@ function isPlaceholderObject(obj) {
 
 function getOptions(opts, defaults = defaultOptions) {
 	if (isPlaceholderObject(opts)) {
-		opts = {placeholders: { "?": opts}};
+		opts = { placeholders: { "?": opts } };
 	}
-	const options = {...defaults, ...opts};
+	const options = { ...defaults, ...opts };
 
 	if ("placeholders" in opts) {
 		if (isPlaceholderObject(options.placeholders)) {
@@ -100,7 +100,7 @@ function getOptions(opts, defaults = defaultOptions) {
 				"?": options.placeholders,
 			};
 		} else {
-			options.placeholders = {...options.placeholders};
+			options.placeholders = { ...options.placeholders };
 		}
 		for (const prop in options.placeholders) {
 			if (Array.isArray(options.placeholders[prop])) {
@@ -126,8 +126,12 @@ export default function emel(str = "", options = {}) {
 	}
 
 	options = getOptions(options);
+
+	/** @type {Document} */
+	const doc = options.doc || document;
+
 	/* istanbul ignore next */
-	if (!document || !document.createElement) {
+	if (!doc || !doc.createElement) {
 		throw new Error("Must be in a browser");
 	}
 	if ("?" in options.placeholders) {
@@ -138,7 +142,7 @@ export default function emel(str = "", options = {}) {
 		str = str.replace(/\s*?\n\s*/g, "");
 	}
 	const tree = emmet(str);
-	const children = tree.children.map(createElementFromNode(options.placeholders));
+	const children = tree.children.map(createElementFromNode(options.placeholders, doc));
 
 	if (options.returnSingleChild && children.length === 1) {
 		return children[0];
@@ -147,5 +151,5 @@ export default function emel(str = "", options = {}) {
 	return children.reduce((el, child) => {
 		el.appendChild(child);
 		return el;
-	}, document.createDocumentFragment());
+	}, doc.createDocumentFragment());
 }

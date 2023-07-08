@@ -17,6 +17,8 @@ npm install emel
 You can use any [emmet abbreviation](https://docs.emmet.io/abbreviations/syntax/).
 
 Options:
+
+- [`doc`](#doc): `Document`
 - [`returnSingleChild`](#returnsinglechild): `boolean`
 - [`multiline`](#multiline): `boolean`
 - [`placeholders`](#placeholders): `mixed`
@@ -63,6 +65,19 @@ const element = emel("div{?}+div{?}");
  * <div>1</div>
  * <div>2</div>
  */
+```
+
+### Doc
+
+Default to browser `document`.
+For [Angular SSR](https://angular.io/guide/universal), use `injector.get(DOCUMENT)`
+
+```ts
+import { DOCUMENT } from '@angular/common';
+
+emel(`div>p*3`, {
+  doc: injector.get(DOCUMENT)
+});
 ```
 
 ### ReturnSingleChild
