@@ -6,9 +6,11 @@
   "module": "./src/emel.js",
   "browser": "./dist/emel.umd.js",
   "type": "module",
+  "typings": "./typings.d.ts",
   "files": [
     "dist/",
-    "src/"
+    "src/",
+    "typings.d.ts"
   ],
   "exports": {
     ".": {
