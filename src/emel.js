@@ -46,22 +46,23 @@ function createElementFromNode(placeholders, /** @type {Document} */ doc) {
 						el.setAttribute(name, "");
 					}
 				} else {
-					const attrVal = format(attr.value, placeholders);
+					const resolveAttrVal = () => format(attr.value, placeholders);
 
 					switch (attr.name) {
 						case "id":
-							el.setAttribute(attr.name, attrVal);
+							el.setAttribute(attr.name, resolveAttrVal());
 							break;
 
 						case "class":
-							el.classList.add(attrVal);
+							el.classList.add(resolveAttrVal());
 							break;
 
 						default: {
 							const name = format(attr.name, placeholders, true);
+							const value = resolveAttrVal();
 
 							if (name !== false) {
-								el.setAttribute(name, attrVal);
+								el.setAttribute(name, value);
 							}
 						}
 					}
