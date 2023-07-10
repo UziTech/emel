@@ -43,6 +43,19 @@ describe("emel", () => {
 			const el = emel(".test");
 			expect(el.childNodes[0].classList.contains("test")).toBe(true);
 		});
+
+		test("should set multiple classes", () => {
+			const classes = ["test-1", "test-2"];
+
+			const el = emel(classes.map(c => `.${c}`).join(""));
+
+			/** @type {HTMLElement} */
+			const firstChild = el.childNodes[0];
+
+			classes.forEach(cl => {
+				expect(firstChild.classList.contains(cl)).toBe(true);
+			});
+		});
 	});
 
 	describe("attribute", () => {
@@ -254,14 +267,14 @@ describe("emel", () => {
 
 			test("should replace attribute with 'false'", () => {
 				const el = emel("div[attr=val]", {
-					placeholders: {val: false}
+					placeholders: { val: false }
 				});
 				expect(el.childNodes[0].getAttribute("attr")).toBe("false");
 			});
 
 			test("should remove attribute on false name", () => {
 				const el = emel("div[attr=val]", {
-					placeholders: {attr: false}
+					placeholders: { attr: false }
 				});
 				expect(el.childNodes[0].getAttribute("false")).toBe(null);
 				expect(el.childNodes[0].getAttribute("attr")).toBe(null);
@@ -269,7 +282,7 @@ describe("emel", () => {
 
 			test("should remove boolean attribute on false", () => {
 				const el = emel("div[attr.]", {
-					placeholders: {attr: false}
+					placeholders: { attr: false }
 				});
 				expect(el.childNodes[0].getAttribute("false")).toBe(null);
 				expect(el.childNodes[0].getAttribute("attr")).toBe(null);
@@ -277,7 +290,7 @@ describe("emel", () => {
 
 			test("should remove attribute on null", () => {
 				const el = emel("div[attr.]", {
-					placeholders: {attr: null}
+					placeholders: { attr: null }
 				});
 				expect(el.childNodes[0].getAttribute("attr")).toBe(null);
 			});
@@ -285,21 +298,21 @@ describe("emel", () => {
 			test("should remove attribute on undefined", () => {
 				let undef;
 				const el = emel("div[attr.]", {
-					placeholders: {attr: undef}
+					placeholders: { attr: undef }
 				});
 				expect(el.childNodes[0].getAttribute("attr")).toBe(null);
 			});
 
 			test("should retain boolean attribute on true value", () => {
 				const el = emel("div[attr.]", {
-					placeholders: {attr: true}
+					placeholders: { attr: true }
 				});
 				expect(el.childNodes[0].getAttribute("attr")).toBe("");
 			});
 
 			test("should retain attribute on true value", () => {
 				const el = emel("div[attr=val]", {
-					placeholders: {attr: true}
+					placeholders: { attr: true }
 				});
 				expect(el.childNodes[0].getAttribute("attr")).toBe("val");
 			});
@@ -409,7 +422,7 @@ describe("emel", () => {
 		});
 
 		test("remove multiline in text", () => {
-			const el = emel("div{line 1\nline 2}", {multiline: true});
+			const el = emel("div{line 1\nline 2}", { multiline: true });
 			expect(el.childNodes[0].textContent.trim()).toBe("line 1line 2");
 		});
 
@@ -421,7 +434,7 @@ describe("emel", () => {
 				div{
 					div2
 				}
-			`, {multiline: true});
+			`, { multiline: true });
 			expect(el.childNodes[0].textContent).toBe("div1");
 			expect(el.childNodes[1].textContent).toBe("div2");
 		});
@@ -430,7 +443,7 @@ describe("emel", () => {
 			const el = emel(`
 				div{div 1}+
 				div{div 2}
-			`, {multiline: true});
+			`, { multiline: true });
 			expect(el.childNodes[0].textContent).toBe("div 1");
 			expect(el.childNodes[1].textContent).toBe("div 2");
 		});
@@ -438,20 +451,20 @@ describe("emel", () => {
 
 	describe("returnSingleChild", () => {
 		test("should return single child", () => {
-			const el = emel("div", {returnSingleChild: true});
+			const el = emel("div", { returnSingleChild: true });
 			expect(el.nodeType).toBe(Node.ELEMENT_NODE);
 			expect(el.tagName.toLowerCase()).toBe("div");
 			expect(el.childNodes).toHaveLength(0);
 		});
 
 		test("should return a docment fragment", () => {
-			const el = emel("div*2", {returnSingleChild: true});
+			const el = emel("div*2", { returnSingleChild: true });
 			expect(el.nodeType).toBe(Node.DOCUMENT_FRAGMENT_NODE);
 			expect(el.childNodes).toHaveLength(2);
 		});
 
 		test("should return a text fragment", () => {
-			const el = emel("{test}", {returnSingleChild: true});
+			const el = emel("{test}", { returnSingleChild: true });
 			expect(el.nodeType).toBe(Node.TEXT_NODE);
 			expect(el.textContent).toBe("test");
 		});
@@ -465,15 +478,15 @@ describe("emel", () => {
 		});
 
 		test("should set options", () => {
-			const {emel: newEmel} = new emel({returnSingleChild: true});
+			const { emel: newEmel } = new emel({ returnSingleChild: true });
 			const el = newEmel("div{test}");
 			expect(el.nodeType).toBe(Node.ELEMENT_NODE);
 			expect(el.textContent).toBe("test");
 		});
 
 		test("should reset options", () => {
-			const {emel: newEmel} = new emel({returnSingleChild: true});
-			const {emel: newEmel2} = new emel();
+			const { emel: newEmel } = new emel({ returnSingleChild: true });
+			const { emel: newEmel2 } = new emel();
 			expect(newEmel("div").nodeType).toBe(Node.ELEMENT_NODE);
 			expect(newEmel2("div").nodeType).toBe(Node.DOCUMENT_FRAGMENT_NODE);
 		});

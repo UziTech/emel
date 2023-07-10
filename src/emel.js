@@ -28,12 +28,14 @@ function format(value, placeholders, isAttrName = false) {
 }
 
 function createElementFromNode(placeholders, /** @type {Document} */ doc) {
-	return (node) => {
+	return (/** @type {Node} */ node) => {
 		if (node.value && !node.name && !node.attributes && node.children.length === 0) {
 			return doc.createTextNode(format(node.value, placeholders));
 		}
 
 		const tag = format(node.name || "div", placeholders);
+
+		/** @type {HTMLElement} */
 		const el = tag instanceof Node ? tag : doc.createElement(tag);
 
 		if (node.attributes) {
@@ -43,13 +45,26 @@ function createElementFromNode(placeholders, /** @type {Document} */ doc) {
 					if (name !== false) {
 						el.setAttribute(name, "");
 					}
-				} else if (["id", "class"].includes(attr.name)) {
-					el.setAttribute(attr.name, format(attr.value, placeholders));
 				} else {
-					const name = format(attr.name, placeholders, true);
-					const value = format(attr.value, placeholders);
-					if (name !== false) {
-						el.setAttribute(name, value);
+					const resolveAttrVal = () => format(attr.value, placeholders);
+
+					switch (attr.name) {
+						case "id":
+							el.setAttribute(attr.name, resolveAttrVal());
+							break;
+
+						case "class":
+							el.classList.add(resolveAttrVal());
+							break;
+
+						default: {
+							const name = format(attr.name, placeholders, true);
+							const value = resolveAttrVal();
+
+							if (name !== false) {
+								el.setAttribute(name, value);
+							}
+						}
 					}
 				}
 			});
