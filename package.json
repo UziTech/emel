@@ -6,11 +6,10 @@
   "module": "./src/emel.js",
   "browser": "./dist/emel.umd.js",
   "type": "module",
-  "typings": "./typings.d.ts",
+  "types": "./src/emel.d.ts",
   "files": [
     "dist/",
-    "src/",
-    "typings.d.ts"
+    "src/"
   ],
   "exports": {
     ".": {
@@ -21,6 +20,7 @@
   "scripts": {
     "test": "npm run build && cross-env NODE_OPTIONS=--experimental-vm-modules jest --verbose",
     "test:cover": "npm run build && cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage",
+    "test:types": "tsd -t src/emel.d.ts -f spec/emel.test-d.ts",
     "lint": "eslint .",
     "format": "eslint . --fix",
     "build": "rollup -c rollup.config.js"
@@ -56,7 +56,8 @@
     "jest-cli": "^29.6.1",
     "jest-environment-jsdom": "^29.6.1",
     "rollup": "^3.26.2",
-    "semantic-release": "^21.0.7"
+    "semantic-release": "^21.0.7",
+    "tsd": "^0.28.1"
   },
   "release": {
     "plugins": [

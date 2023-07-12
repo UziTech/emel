@@ -27,26 +27,25 @@ function format(value, placeholders, isAttrName = false) {
 	return value;
 }
 
-function createElementFromNode(placeholders, /** @type {Document} */ doc) {
-	return (/** @type {Node} */ node) => {
+function createElementFromNode(options) {
+	return (node) => {
 		if (node.value && !node.name && !node.attributes && node.children.length === 0) {
-			return doc.createTextNode(format(node.value, placeholders));
+			return options.doc.createTextNode(format(node.value, options.placeholders));
 		}
 
-		const tag = format(node.name || "div", placeholders);
+		const tag = format(node.name || "div", options.placeholders);
 
-		/** @type {HTMLElement} */
-		const el = tag instanceof Node ? tag : doc.createElement(tag);
+		const el = tag instanceof Node ? tag : options.doc.createElement(tag);
 
 		if (node.attributes) {
 			node.attributes.forEach(attr => {
 				if (attr.boolean || typeof attr.value === "undefined") {
-					const name = format(attr.name, placeholders, true);
+					const name = format(attr.name, options.placeholders, true);
 					if (name !== false) {
 						el.setAttribute(name, "");
 					}
 				} else {
-					const resolveAttrVal = () => format(attr.value, placeholders);
+					const resolveAttrVal = () => format(attr.value, options.placeholders);
 
 					switch (attr.name) {
 						case "id":
@@ -58,7 +57,7 @@ function createElementFromNode(placeholders, /** @type {Document} */ doc) {
 							break;
 
 						default: {
-							const name = format(attr.name, placeholders, true);
+							const name = format(attr.name, options.placeholders, true);
 							const value = resolveAttrVal();
 
 							if (name !== false) {
@@ -71,7 +70,7 @@ function createElementFromNode(placeholders, /** @type {Document} */ doc) {
 		}
 
 		if (node.value) {
-			const text = format(node.value, placeholders);
+			const text = format(node.value, options.placeholders);
 			if (text instanceof Node) {
 				el.appendChild(text);
 			} else {
@@ -80,7 +79,7 @@ function createElementFromNode(placeholders, /** @type {Document} */ doc) {
 		}
 
 		node.children
-			.map(createElementFromNode(placeholders, doc))
+			.map(createElementFromNode(options))
 			.forEach(child => el.appendChild(child));
 
 		return el;
@@ -124,6 +123,10 @@ function getOptions(opts, defaults = defaultOptions) {
 		}
 	}
 
+	if (!options.doc) {
+		options.doc = document;
+	}
+
 	return options;
 }
 
@@ -142,13 +145,6 @@ export default function emel(str = "", options = {}) {
 
 	options = getOptions(options);
 
-	/** @type {Document} */
-	const doc = options.doc || document;
-
-	/* istanbul ignore next */
-	if (!doc || !doc.createElement) {
-		throw new Error("Must be in a browser");
-	}
 	if ("?" in options.placeholders) {
 		// escape unescaped questionmarks
 		str = str.replace(/(^|[^\\])(\\\\)*\?/g, "$1$2\\?");
@@ -157,7 +153,7 @@ export default function emel(str = "", options = {}) {
 		str = str.replace(/\s*?\n\s*/g, "");
 	}
 	const tree = emmet(str);
-	const children = tree.children.map(createElementFromNode(options.placeholders, doc));
+	const children = tree.children.map(createElementFromNode(options));
 
 	if (options.returnSingleChild && children.length === 1) {
 		return children[0];
@@ -166,5 +162,5 @@ export default function emel(str = "", options = {}) {
 	return children.reduce((el, child) => {
 		el.appendChild(child);
 		return el;
-	}, doc.createDocumentFragment());
+	}, options.doc.createDocumentFragment());
 }

@@ -478,17 +478,17 @@ describe("emel", () => {
 		});
 
 		test("should set options", () => {
-			const { emel: newEmel } = new emel({ returnSingleChild: true });
-			const el = newEmel("div{test}");
+			const e = new emel({ returnSingleChild: true });
+			const el = e.emel("div{test}");
 			expect(el.nodeType).toBe(Node.ELEMENT_NODE);
 			expect(el.textContent).toBe("test");
 		});
 
 		test("should reset options", () => {
-			const { emel: newEmel } = new emel({ returnSingleChild: true });
-			const { emel: newEmel2 } = new emel();
-			expect(newEmel("div").nodeType).toBe(Node.ELEMENT_NODE);
-			expect(newEmel2("div").nodeType).toBe(Node.DOCUMENT_FRAGMENT_NODE);
+			const e1 = new emel({ returnSingleChild: true });
+			const e2 = new emel();
+			expect(e1.emel("div").nodeType).toBe(Node.ELEMENT_NODE);
+			expect(e2.emel("div").nodeType).toBe(Node.DOCUMENT_FRAGMENT_NODE);
 		});
 	});
 });
