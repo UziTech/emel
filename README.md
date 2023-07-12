@@ -24,9 +24,9 @@ Options:
 - [`placeholders`](#placeholders): `mixed`
 
 ```js
-import { emel } from "emel";
-// or const { emel } = require("emel"); // for cjs
-// or const { emel } = global.emel; // for umd
+import emel from "emel";
+// or const emel = require("emel"); // for cjs
+// or const emel = global.emel; // for umd
 const emmetString = "table>thead>tr>th{col1}+th{col2}^^tbody>(tr>td[colspan=2]{2 col width})+tr>td.col${1 col width}*2";
 const options = {};
 const element = emel(emmetString, options);
@@ -58,9 +58,9 @@ You can set the default options by creating a new instance of emel and pass the 
 
 
 ```js
-import { Emel } from "emel";
-// or const { Emel } = require("emel"); // for cjs
-// or const { Emel } = global.emel; // for umd
+import Emel from "emel";
+// or const Emel = require("emel"); // for cjs
+// or const Emel = global.emel; // for umd
 const e = new Emel({placeholders: [1, 2]});
 const element = e.emel("div{?}+div{?}");
 /**
