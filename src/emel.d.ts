@@ -19,7 +19,7 @@ export default function emel(
 	options: EmelOptions & { returnSingleChild: true }
 ): Node;
 
-export default class Emel {
-	new(options?: EmelOptions): { emel: typeof emel};
+export default class emel {
+	constructor(options?: EmelOptions);
 	emel: typeof emel;
 }

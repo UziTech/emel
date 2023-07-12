@@ -41,8 +41,21 @@ expectType<DocumentFragment>(emel("", { returnSingleChild: false }));
 emel("", { doc: document });
 
 // Emel class
-
-const e = new emel();
+import Emel from "../src/emel.js";
+const { emel: newEmel } = new Emel({
+  doc: document,
+  returnSingleChild: true,
+  multiline: false,
+  placeholders: {},
+});
+newEmel().nodeType;
+newEmel("", {
+  doc: document,
+  returnSingleChild: true,
+  multiline: false,
+  placeholders: {},
+});
+const e = new Emel();
 e.emel().nodeType;
 e.emel("", {
   doc: document,

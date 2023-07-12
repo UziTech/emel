@@ -61,8 +61,8 @@ You can set the default options by creating a new instance of emel and pass the 
 import Emel from "emel";
 // or const Emel = require("emel"); // for cjs
 // or const Emel = global.emel; // for umd
-const e = new Emel({placeholders: [1, 2]});
-const element = e.emel("div{?}+div{?}");
+const { emel } = new Emel({placeholders: [1, 2]});
+const element = emel("div{?}+div{?}");
 /**
  * <div>1</div>
  * <div>2</div>
