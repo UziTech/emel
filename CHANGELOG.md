@@ -1,3 +1,12 @@
+## [3.1.1](https://github.com/UziTech/emel/compare/v3.1.0...v3.1.1) (2023-07-12)
+
+
+### Bug Fixes
+
+* add types ([#401](https://github.com/UziTech/emel/issues/401)) ([81aeaf1](https://github.com/UziTech/emel/commit/81aeaf19c63d5368faa0a6a33e3100f743861884))
+* fix multiple classes ([#400](https://github.com/UziTech/emel/issues/400)) ([afbcdba](https://github.com/UziTech/emel/commit/afbcdba72f21f7847065cf85b169553597687557))
+* fix types ([#402](https://github.com/UziTech/emel/issues/402)) ([08f804c](https://github.com/UziTech/emel/commit/08f804cd7b9a090841c93febd32d49c5ed29c159))
+
 # [3.1.0](https://github.com/UziTech/emel/compare/v3.0.0...v3.1.0) (2023-07-08)
 
 
