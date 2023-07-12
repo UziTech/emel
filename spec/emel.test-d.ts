@@ -1,5 +1,9 @@
 import emel from "../src/emel.js";
-import {expectError, expectType} from 'tsd';
+import {
+  expectError,
+  expectType,
+  expectNotType,
+} from 'tsd';
 
 expectType<DocumentFragment>(emel());
 
@@ -35,6 +39,7 @@ emel("", { multiline: false });
 
 // returnSingleChild
 expectType<Node>(emel("", { returnSingleChild: true }));
+expectNotType<DocumentFragment>(emel("", { returnSingleChild: true }));
 expectType<DocumentFragment>(emel("", { returnSingleChild: false }));
 
 // doc
