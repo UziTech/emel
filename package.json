@@ -46,11 +46,11 @@
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.2.1",
     "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/commit-analyzer": "^10.0.2",
+    "@semantic-release/commit-analyzer": "^10.0.3",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^9.0.4",
     "@semantic-release/npm": "^10.0.5",
-    "@semantic-release/release-notes-generator": "^11.0.5",
+    "@semantic-release/release-notes-generator": "^11.0.6",
     "cross-env": "^7.0.3",
     "eslint": "^8.48.0",
     "jest-cli": "^29.6.4",
