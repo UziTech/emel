@@ -53,8 +53,8 @@
     "@semantic-release/release-notes-generator": "^11.0.7",
     "cross-env": "^7.0.3",
     "eslint": "^8.49.0",
-    "jest-cli": "^29.6.4",
-    "jest-environment-jsdom": "^29.6.4",
+    "jest-cli": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "rollup": "^3.29.1",
     "semantic-release": "^21.1.1",
     "tsd": "^0.29.0"
