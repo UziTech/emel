@@ -57,7 +57,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "rollup": "^4.9.1",
     "semantic-release": "^22.0.12",
-    "tsd": "^0.29.0"
+    "tsd": "^0.30.0"
   },
   "release": {
     "plugins": [
