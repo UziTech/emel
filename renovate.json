@@ -1,10 +1,15 @@
 {
   "extends": [
-    "config:base"
+    "config:recommended"
   ],
-  "devDependencies": {
-    "automerge": true,
-    "commitMessageTopic": "devDependency {{depName}}"
-  },
+  "packageRules": [
+    {
+      "matchDepTypes": [
+        "devDependencies"
+      ],
+      "automerge": true,
+      "commitMessageTopic": "devDependency {{depName}}"
+    }
+  ],
   "rangeStrategy": "bump"
 }
