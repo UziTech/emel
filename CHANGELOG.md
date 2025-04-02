@@ -1,3 +1,10 @@
+## [3.1.2](https://github.com/UziTech/emel/compare/v3.1.1...v3.1.2) (2025-04-02)
+
+
+### Bug Fixes
+
+* fix redos ([#690](https://github.com/UziTech/emel/issues/690)) ([bc8b005](https://github.com/UziTech/emel/commit/bc8b0052c883febbef3f7e74727b485f199c946e))
+
 ## [3.1.1](https://github.com/UziTech/emel/compare/v3.1.0...v3.1.1) (2023-07-12)
 
 
