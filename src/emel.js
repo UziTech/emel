@@ -150,7 +150,7 @@ export default function emel(str = "", options = {}) {
 		str = str.replace(/(^|[^\\])(\\\\)*\?/g, "$1$2\\?");
 	}
 	if (options.multiline) {
-		str = str.replace(/\s*?\n\s*/g, "");
+		str = str.split("\n").map(line => line.trim()).join("");
 	}
 	const tree = emmet(str);
 	const children = tree.children.map(createElementFromNode(options));
