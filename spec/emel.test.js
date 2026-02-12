@@ -47,12 +47,12 @@ describe("emel", () => {
 		test("should set multiple classes", () => {
 			const classes = ["test-1", "test-2"];
 
-			const el = emel(classes.map(c => `.${c}`).join(""));
+			const el = emel(classes.map((c) => `.${c}`).join(""));
 
 			/** @type {HTMLElement} */
 			const firstChild = el.childNodes[0];
 
-			classes.forEach(cl => {
+			classes.forEach((cl) => {
 				expect(firstChild.classList.contains(cl)).toBe(true);
 			});
 		});
@@ -95,14 +95,18 @@ describe("emel", () => {
 				const span = document.createElement("span");
 				const el = emel("div{?}", { placeholders: span });
 				expect(el.childNodes[0].childNodes.length).toBe(1);
-				expect(el.childNodes[0].childNodes[0].tagName.toLowerCase()).toBe("span");
+				expect(el.childNodes[0].childNodes[0].tagName.toLowerCase()).toBe(
+					"span",
+				);
 			});
 
 			test("should replace placeholder with HTMLElement in array", () => {
 				const span = document.createElement("span");
 				const el = emel("div{?}", { placeholders: [span] });
 				expect(el.childNodes[0].childNodes.length).toBe(1);
-				expect(el.childNodes[0].childNodes[0].tagName.toLowerCase()).toBe("span");
+				expect(el.childNodes[0].childNodes[0].tagName.toLowerCase()).toBe(
+					"span",
+				);
 			});
 
 			test("should use placeholder instead of creating new element", () => {
@@ -194,17 +198,30 @@ describe("emel", () => {
 			});
 
 			test("should replace placeholder in children first", () => {
-				const el = emel("div>span>span{?}*2^span{?}", { placeholders: ["test1", "test2", "test3"] });
+				const el = emel("div>span>span{?}*2^span{?}", {
+					placeholders: ["test1", "test2", "test3"],
+				});
 				expect(el.childNodes[0].childNodes).toHaveLength(2);
 				expect(el.childNodes[0].childNodes[0].childNodes).toHaveLength(2);
-				expect(el.childNodes[0].childNodes[0].childNodes[0].textContent).toBe("test1");
-				expect(el.childNodes[0].childNodes[0].childNodes[1].textContent).toBe("test2");
+				expect(el.childNodes[0].childNodes[0].childNodes[0].textContent).toBe(
+					"test1",
+				);
+				expect(el.childNodes[0].childNodes[0].childNodes[1].textContent).toBe(
+					"test2",
+				);
 				expect(el.childNodes[0].childNodes[1].textContent).toBe("test3");
 			});
 
 			test("should replace text placeholder after attributes", () => {
 				const el = emel("?{?}#?.?[?='?']", {
-					placeholders: ["tag", "id", "class", "attrName", "attr Value", "text"]
+					placeholders: [
+						"tag",
+						"id",
+						"class",
+						"attrName",
+						"attr Value",
+						"text",
+					],
 				});
 				expect(el.childNodes[0].tagName.toLowerCase()).toBe("tag");
 				expect(el.childNodes[0].id).toBe("id");
@@ -217,7 +234,7 @@ describe("emel", () => {
 		describe("string", () => {
 			test("should replace all placeholders", () => {
 				const el = emel("?{?}#?.?[?=?]", {
-					placeholders: "test"
+					placeholders: "test",
 				});
 				expect(el.childNodes[0].tagName.toLowerCase()).toBe("test");
 				expect(el.childNodes[0].id).toBe("test");
@@ -228,7 +245,7 @@ describe("emel", () => {
 
 			test("should replace with empty string", () => {
 				const el = emel("div{?}", {
-					placeholders: ""
+					placeholders: "",
 				});
 				expect(el.childNodes[0].textContent).toBe("");
 			});
@@ -237,14 +254,14 @@ describe("emel", () => {
 		describe("number", () => {
 			test("should replace with a number", () => {
 				const el = emel("div{?}", {
-					placeholders: 1
+					placeholders: 1,
 				});
 				expect(el.childNodes[0].textContent).toBe("1");
 			});
 
 			test("should replace with a zero", () => {
 				const el = emel("div{?}", {
-					placeholders: 0
+					placeholders: 0,
 				});
 				expect(el.childNodes[0].textContent).toBe("0");
 			});
@@ -253,28 +270,28 @@ describe("emel", () => {
 		describe("boolean", () => {
 			test("should replace with 'true'", () => {
 				const el = emel("div{?}", {
-					placeholders: true
+					placeholders: true,
 				});
 				expect(el.childNodes[0].textContent).toBe("true");
 			});
 
 			test("should replace with 'false'", () => {
 				const el = emel("div{?}", {
-					placeholders: false
+					placeholders: false,
 				});
 				expect(el.childNodes[0].textContent).toBe("false");
 			});
 
 			test("should replace attribute with 'false'", () => {
 				const el = emel("div[attr=val]", {
-					placeholders: { val: false }
+					placeholders: { val: false },
 				});
 				expect(el.childNodes[0].getAttribute("attr")).toBe("false");
 			});
 
 			test("should remove attribute on false name", () => {
 				const el = emel("div[attr=val]", {
-					placeholders: { attr: false }
+					placeholders: { attr: false },
 				});
 				expect(el.childNodes[0].getAttribute("false")).toBe(null);
 				expect(el.childNodes[0].getAttribute("attr")).toBe(null);
@@ -282,7 +299,7 @@ describe("emel", () => {
 
 			test("should remove boolean attribute on false", () => {
 				const el = emel("div[attr.]", {
-					placeholders: { attr: false }
+					placeholders: { attr: false },
 				});
 				expect(el.childNodes[0].getAttribute("false")).toBe(null);
 				expect(el.childNodes[0].getAttribute("attr")).toBe(null);
@@ -290,29 +307,28 @@ describe("emel", () => {
 
 			test("should remove attribute on null", () => {
 				const el = emel("div[attr.]", {
-					placeholders: { attr: null }
+					placeholders: { attr: null },
 				});
 				expect(el.childNodes[0].getAttribute("attr")).toBe(null);
 			});
 
 			test("should remove attribute on undefined", () => {
-				let undef;
 				const el = emel("div[attr.]", {
-					placeholders: { attr: undef }
+					placeholders: { attr: undefined },
 				});
 				expect(el.childNodes[0].getAttribute("attr")).toBe(null);
 			});
 
 			test("should retain boolean attribute on true value", () => {
 				const el = emel("div[attr.]", {
-					placeholders: { attr: true }
+					placeholders: { attr: true },
 				});
 				expect(el.childNodes[0].getAttribute("attr")).toBe("");
 			});
 
 			test("should retain attribute on true value", () => {
 				const el = emel("div[attr=val]", {
-					placeholders: { attr: true }
+					placeholders: { attr: true },
 				});
 				expect(el.childNodes[0].getAttribute("attr")).toBe("val");
 			});
@@ -328,7 +344,7 @@ describe("emel", () => {
 						class: "class1",
 						attr: "attr1",
 						value: "value1",
-					}
+					},
 				});
 				expect(el.childNodes[0].tagName.toLowerCase()).toBe("tag1");
 				expect(el.childNodes[0].id).toBe("id1");
@@ -346,7 +362,7 @@ describe("emel", () => {
 						class: ["class1", "class2"],
 						attr: ["attr1", "attr2"],
 						value: ["value1", "value2"],
-					}
+					},
 				});
 				expect(el.childNodes[0].tagName.toLowerCase()).toBe("tag1");
 				expect(el.childNodes[0].id).toBe("id1");
@@ -367,7 +383,9 @@ describe("emel", () => {
 					const span = document.createElement("span");
 					const el = emel("div{?}", span);
 					expect(el.childNodes[0].childNodes.length).toBe(1);
-					expect(el.childNodes[0].childNodes[0].tagName.toLowerCase()).toBe("span");
+					expect(el.childNodes[0].childNodes[0].tagName.toLowerCase()).toBe(
+						"span",
+					);
 				});
 			});
 
@@ -427,23 +445,29 @@ describe("emel", () => {
 		});
 
 		test("remove all newlines", () => {
-			const el = emel(`
+			const el = emel(
+				`
 				div{
 					div1
 				}+
 				div{
 					div2
 				}
-			`, { multiline: true });
+			`,
+				{ multiline: true },
+			);
 			expect(el.childNodes[0].textContent).toBe("div1");
 			expect(el.childNodes[1].textContent).toBe("div2");
 		});
 
 		test("keep space in text", () => {
-			const el = emel(`
+			const el = emel(
+				`
 				div{div 1}+
 				div{div 2}
-			`, { multiline: true });
+			`,
+				{ multiline: true },
+			);
 			expect(el.childNodes[0].textContent).toBe("div 1");
 			expect(el.childNodes[1].textContent).toBe("div 2");
 		});
