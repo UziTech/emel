@@ -54,7 +54,7 @@
     "@semantic-release/release-notes-generator": "^14.1.1",
     "cross-env": "^10.1.0",
     "eslint": "^10.8.1",
-    "globals": "^17.9.0",
+    "globals": "^17.10.0",
     "jsdom": "^30.0.1",
     "rollup": "^4.62.4",
     "semantic-release": "^25.0.9",
