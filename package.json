@@ -56,7 +56,7 @@
     "eslint": "^10.9.1",
     "globals": "^17.11.0",
     "jsdom": "^30.0.1",
-    "rollup": "^4.63.0",
+    "rollup": "^4.63.1",
     "semantic-release": "^25.0.9",
     "tsd": "^0.33.0"
   },
